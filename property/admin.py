@@ -12,5 +12,7 @@ class FlatAdmin(admin.ModelAdmin):
 
     readonly_fields = ('created_at', )
 
+    list_filter = ('new_building', 'rooms_number', 'active', 'has_balcony')
+
 
 admin.site.register(Flat, FlatAdmin)
