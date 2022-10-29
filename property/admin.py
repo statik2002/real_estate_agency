@@ -12,6 +12,7 @@ class OwnerInlines(admin.TabularInline):
     extra = 1
 
 
+@admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
 
     list_display = ('address', 'price', 'new_building', 'construction_year', 'town')
@@ -28,15 +29,14 @@ class FlatAdmin(admin.ModelAdmin):
     inlines = [OwnerInlines]
 
 
+@admin.register(Complaint)
 class ComplaintAdmin(admin.ModelAdmin):
 
     raw_id_fields = ('user', 'flat')
 
 
+@admin.register(Owner)
 class OwnerAdmin(admin.ModelAdmin):
     raw_id_fields = ('flats', )
 
 
-admin.site.register(Flat, FlatAdmin)
-admin.site.register(Complaint, ComplaintAdmin)
-admin.site.register(Owner, OwnerAdmin)
