@@ -7,7 +7,9 @@ def migrate_owner(apps, schema_editor):
     flat_model = apps.get_model('property', 'Flat')
     owner_model = apps.get_model('property', 'Owner')
 
-    for flat in flat_model.objects.all():
+    flats = flat_model.objects.all()
+
+    for flat in flats.iterator():
         obj, created = owner_model.objects.get_or_create(
             name=flat.owner,
             owners_phonenumber=flat.owners_phonenumber,

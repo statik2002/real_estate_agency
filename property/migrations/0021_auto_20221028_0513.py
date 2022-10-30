@@ -3,28 +3,6 @@
 from django.db import migrations
 
 
-def migrate_owner_flats(apps, schema_editor):
-    flat_model = apps.get_model('property', 'Flat')
-    owner_model = apps.get_model('property', 'Owner')
-
-    flats = []
-    for owner in owner_model.objects.all():
-        owner_flats = flat_model.objects.filter(owner=owner)
-        for owner_flat in owner_flats:
-            flats.append(owner_flat.pk)
-        owner.flats.set(flats)
-        flats.clear()
-        owner.save()
-
-
-def migrate_owner_flats_back(apps, schema_editor):
-    owner_model = apps.get_model('property', 'Owner')
-
-    for owner in owner_model.objects.all():
-        owner.flats = None
-        owner.save()
-
-
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -32,5 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(migrate_owner_flats, migrate_owner_flats_back),
     ]
