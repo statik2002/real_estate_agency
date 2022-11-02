@@ -73,7 +73,7 @@ class Owner(models.Model):
     name = models.CharField('ФИО владельца', max_length=250, db_index=True)
     phonenumber = models.CharField('Номер владельца', max_length=20)
     pure_phone = PhoneNumberField('Нормализированный номер владельца', blank=True, max_length=20)
-    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='flats', db_index=True)
+    flats = models.ManyToManyField('Flat', verbose_name='Квартиры в собственности', related_name='owners', db_index=True)
 
     class Meta:
         verbose_name = 'Собственник'
