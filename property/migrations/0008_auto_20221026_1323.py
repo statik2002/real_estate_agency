@@ -9,8 +9,7 @@ def define_new_building(apps, schema_editor):
     flats = flats_model.objects.all()
 
     for flat in flats:
-        if flat.construction_year > 2010:
-            flat.new_building = True
+        flat.new_building = flat.construction_year > 2010
 
         flat.save()
 
